@@ -13,8 +13,17 @@ button.addEventListener('click', () => fetchData(url))
 const fetchData = async (location) => {
   // clear the data div content
   dataDiv.textContent = ''
+
+  // define headers and request parameters
+  const h = new Headers()
+  h.append('Accept', 'text/html')
+  const req = new Request(location, {
+    method: 'GET',
+    headers: h
+  })
+  
   // fetch data and get the reader text decoder
-  const res = await fetch(location)
+  const res = await fetch(req)
   const reader = res.body
     .pipeThrough(new TextDecoderStream())
     .getReader()
