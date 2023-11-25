@@ -1,13 +1,13 @@
 body {
+  background-color: #ffcc00;
   font-family: sans-serif;
   margin: 10px auto;
-  width: 1000px
+  width: 50%;
 }
 
 .btn {
   background-color: darkslategrey;
   border: 0;
-  border-radius: 50%;
   color: white;
   font-weight: 700;
   padding: 8px 16px;
@@ -29,4 +29,27 @@ body {
   color: black;
   border: 2px dotted darkslategrey;
   padding: 10px;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 60px;
+  margin: -15px;
+}
+
+p {
+  text-align: center;        
+  color: #907400;
+}
+
+p#btn {
+  cursor: pointer;
+}
+
+.img {
+  margin: auto;
+  display: block;
+  width: 50%;
 }
