@@ -57,6 +57,14 @@ const createChunkDiv = (id, text) => {
   dataDiv.appendChild(chunkWrapper)
 }
 
+const checkStatus = (response) => {
+  if(response.ok) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(new Error(response.statusText))
+  }
+}
+
 const showImage = () => {
 // ** FETCHING THE IP ADDRESS
 let url = 'http://worldtimeapi.org/api/timezone/Africa/Harare'
@@ -71,9 +79,10 @@ let req = new Request(url, {
 
 // define our AJAX fetch request
 fetch(req)
+  .then(checkStatus)
   .then(res => res.json())
   .then( data => document.getElementById('iptext').innerHTML = data.client_ip)
-  .catch(e =>console.log('Oops, there was a network error.', e))
+  .catch(e =>console.log('Oops, there was a network error:', e))
 
   // ** FETCHING THE IMAGE
   let showBtn = document.getElementById('btn-img')
@@ -95,13 +104,14 @@ fetch(req)
   
   // perform our fetch call
   fetch(req)
+    .then(checkStatus)
     .then(res => res.blob())
     .then(imgObj => {
         const pictureURL = URL.createObjectURL(imgObj)
         imageElement.src = pictureURL
     })
     .catch(e => {
-        console.log('Something went wrong.', e)
+        console.log('Something went wrong:', e)
     })
   }
 }
