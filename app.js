@@ -82,7 +82,7 @@ fetch(req)
   .then(checkStatus)
   .then(res => res.json())
   .then( data => document.getElementById('iptext').innerHTML = data.client_ip)
-  .catch(e =>console.log('Oops, there was a network error:', e))
+  .catch(e =>console.log('Oops, there was a network error:', e.message))
 
   // ** FETCHING THE IMAGE
   let showBtn = document.getElementById('btn-img')
@@ -111,7 +111,7 @@ fetch(req)
         imageElement.src = pictureURL
     })
     .catch(e => {
-        console.log('Something went wrong:', e)
+        console.log('Something went wrong:', e.message)
     })
   }
 }
